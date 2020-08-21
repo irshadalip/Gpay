@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
+import 'Pager.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreens extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreens> {
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 2),
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Pager())));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +40,8 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           )),
           Positioned(
-            bottom: -50,left: -20,
+            bottom: -50,
+            left: -20,
             child: Image.asset(
               "images/splash_p2.png",
               height: MediaQuery.of(context).size.width * 0.70,
