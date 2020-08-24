@@ -1,4 +1,6 @@
 import 'package:Gpay/models/slide.dart';
+import 'package:Gpay/signIn.dart';
+import 'package:Gpay/signUp.dart';
 import 'package:Gpay/widgets/slideItems.dart';
 import 'package:flutter/material.dart';
 import 'package:Gpay/widgets/sliderDots.dart';
@@ -18,7 +20,7 @@ class _PagerState extends State<Pager> {
   void initState() {
     super.initState();
     Timer.periodic(Duration(seconds: 3), (Timer timer) {
-      if (_currentPage < 2) {
+      if (_currentPage < 4) {
         _currentPage++;
       } else {
         _currentPage = 0;
@@ -64,94 +66,78 @@ class _PagerState extends State<Pager> {
             ),
             Positioned.fill(
               bottom: 0,
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                width: MediaQuery.of(context).size.width,
-                child: Column(
-                  children: <Widget>[
-                    Expanded(
-                      child: PageView.builder(
-                        scrollDirection: Axis.horizontal,
-                        controller: _pageController,
-                        itemCount: slidelist.length,
-                        onPageChanged: _onPageChange,
-                        itemBuilder: (context, i) => SlideItem(i),
+              child: SingleChildScrollView(
+                child: Container(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  alignment: Alignment.bottomCenter,
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: PageView.builder(
+                          scrollDirection: Axis.horizontal,
+                          controller: _pageController,
+                          itemCount: slidelist.length,
+                          onPageChanged: _onPageChange,
+                          itemBuilder: (context, i) => SlideItem(i),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0, bottom: 55),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          for (int i = 0; i < slidelist.length; i++)
-                            if (i == _currentPage)
-                              SliderDots(true)
-                            else
-                              SliderDots(false)
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0, bottom: 55),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            for (int i = 0; i < slidelist.length; i++)
+                              if (i == _currentPage)
+                                SliderDots(true)
+                              else
+                                SliderDots(false)
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: InkWell(
-                        onTap: () {
-                          print("...LOG IN WITH FINGERPRINT...");
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.92,
-                          height: MediaQuery.of(context).size.width * 0.13,
-                          decoration: BoxDecoration(
-                              color: Color(0xff003844),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(3))),
-                          child: Center(
-                            child: Text(
-                              "LOG IN WITH FINGERPRINT",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "Coves",fontWeight: FontWeight.bold,
-                                  fontSize: 18),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: InkWell(
+                          onTap: () {
+                            print("...LOG IN WITH FINGERPRINT...");
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.92,
+                            height: MediaQuery.of(context).size.width * 0.13,
+                            decoration: BoxDecoration(
+                                color: Color(0xff003844),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(3))),
+                            child: Center(
+                              child: Text(
+                                "LOG IN WITH FINGERPRINT",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: "Coves",
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 40, top: 20),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.92,
-                        height: MediaQuery.of(context).size.width * 0.13,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            InkWell(
-                              onTap: () {
-                                print("...Sign In...");
-                              },
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.45,
-                                height:
-                                    MediaQuery.of(context).size.width * 0.13,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      width: 1,
-                                      style: BorderStyle.solid,
-                                      color: Color(0xff003844)),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                ),
-                                child: Center(
-                                  child: Text("Sign In",
-                                      style:
-                                          TextStyle(color: Color(0xff003844),fontFamily: "Poppins")),
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                print("...Sign Up...");
-                              },
-                              child: Container(
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 40, top: 20),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.92,
+                          height: MediaQuery.of(context).size.width * 0.13,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              InkWell(
+                                onTap: () {
+                                  print("...Sign In...");
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SignIn()));
+                                },
+                                child: Container(
                                   width:
                                       MediaQuery.of(context).size.width * 0.45,
                                   height:
@@ -167,14 +153,45 @@ class _PagerState extends State<Pager> {
                                   child: Center(
                                     child: Text("Sign In",
                                         style: TextStyle(
-                                            color: Color(0xff003844),fontFamily: "Poppins-Regular")),
-                                  )),
-                            )
-                          ],
+                                            color: Color(0xff003844),
+                                            fontFamily: "Poppins")),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  print("...Sign Up...");
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SignUp(),settings: RouteSettings(name: '/PagerPage')));
+                                },
+                                child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.45,
+                                    height: MediaQuery.of(context).size.width *
+                                        0.13,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 1,
+                                          style: BorderStyle.solid,
+                                          color: Color(0xff003844)),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5)),
+                                    ),
+                                    child: Center(
+                                      child: Text("Sign Up",
+                                          style: TextStyle(
+                                              color: Color(0xff003844),
+                                              fontFamily: "Poppins-Regular")),
+                                    )),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             )
