@@ -169,20 +169,24 @@ class _SignInState extends State<SignIn> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Container(
-            // width: MediaQuery.of(context).size.width * 0.92,
-            height: MediaQuery.of(context).size.width * 0.13,
-            decoration: BoxDecoration(
-                color: Color(0xff003844),
-                borderRadius: BorderRadius.all(Radius.circular(3))),
-            child: Center(
-              child: Text(
-                "SIGN IN",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: "Coves",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
+          child: InkWell(
+            // onTap: () => Navigator.push(
+            //     context, MaterialPageRoute(builder: (context) => Home())),
+            child: Container(
+              // width: MediaQuery.of(context).size.width * 0.92,
+              height: MediaQuery.of(context).size.width * 0.13,
+              decoration: BoxDecoration(
+                  color: Color(0xff003844),
+                  borderRadius: BorderRadius.all(Radius.circular(3))),
+              child: Center(
+                child: Text(
+                  "SIGN IN",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Coves",
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
               ),
             ),
           ),

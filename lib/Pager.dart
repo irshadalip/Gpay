@@ -1,4 +1,5 @@
 import 'package:Gpay/models/slide.dart';
+import 'package:Gpay/payment.dart';
 import 'package:Gpay/signIn.dart';
 import 'package:Gpay/signUp.dart';
 import 'package:Gpay/widgets/slideItems.dart';
@@ -100,6 +101,10 @@ class _PagerState extends State<Pager> {
                         child: InkWell(
                           onTap: () {
                             print("...LOG IN WITH FINGERPRINT...");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Payment()));
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.92,
@@ -164,7 +169,9 @@ class _PagerState extends State<Pager> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => SignUp(),settings: RouteSettings(name: '/PagerPage')));
+                                          builder: (context) => SignUp(),
+                                          settings: RouteSettings(
+                                              name: '/PagerPage')));
                                 },
                                 child: Container(
                                     width: MediaQuery.of(context).size.width *

@@ -1,4 +1,4 @@
-
+import 'package:Gpay/otpVerify.dart';
 import 'package:Gpay/signIn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -53,19 +53,24 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: <Widget>[
-        Positioned(
-          bottom: -30,
-          left: 0,
-          child: Image.asset(
-            "images/bottum_p.png",
-            height: MediaQuery.of(context).size.width * 0.7,
-          ),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          iconTheme: IconThemeData(color: Color(0xff003844)),
         ),
-        SingleChildScrollView(child: _allContaint())
-      ],
-    ));
+        body: Stack(
+          children: <Widget>[
+            Positioned(
+              bottom: -30,
+              left: 0,
+              child: Image.asset(
+                "images/bottum_p.png",
+                height: MediaQuery.of(context).size.width * 0.7,
+              ),
+            ),
+            SingleChildScrollView(child: _allContaint())
+          ],
+        ));
   }
 
   Widget _allContaint() {
@@ -94,14 +99,6 @@ class _SignUpState extends State<SignUp> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
-          child: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Icon(Icons.arrow_back, color: Color(0xff003844))),
-        ),
         Text(
           "Create an Account",
           style: TextStyle(color: Color(0xff003844), fontSize: 24),
@@ -234,7 +231,7 @@ class _SignUpState extends State<SignUp> {
       children: <Widget>[
         InkWell(
           onTap: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SignIn())),
+              context, MaterialPageRoute(builder: (context) => OtpVerify())),
           child: Container(
             // width: MediaQuery.of(context).size.width * 0.92,
             height: MediaQuery.of(context).size.width * 0.13,
@@ -279,7 +276,7 @@ class _SignUpState extends State<SignUp> {
         Align(
           alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 10),
+            padding: const EdgeInsets.only(bottom: 0),
             child: Text("Registered as an Agent",
                 style: TextStyle(
                   color: Color(0xff003844),
