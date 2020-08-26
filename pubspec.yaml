@@ -49,6 +49,10 @@ flutter:
 
   assets:
     - images/
+    - images/gridPic/
+    - images/airtime/
+    - images/airElectricty/
+    - images/tabIcon/
     - fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,4 +1,5 @@
 import 'package:Gpay/Pager.dart';
+import 'package:Gpay/home.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -170,8 +171,8 @@ class _SignInState extends State<SignIn> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: InkWell(
-            // onTap: () => Navigator.push(
-            //     context, MaterialPageRoute(builder: (context) => Home())),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Home())),
             child: Container(
               // width: MediaQuery.of(context).size.width * 0.92,
               height: MediaQuery.of(context).size.width * 0.13,
