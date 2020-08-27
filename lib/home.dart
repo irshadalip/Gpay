@@ -22,20 +22,9 @@ class _HomeState extends State<Home> {
     Text("Transfer Money")
   ];
 
-  ScrollController _scrollController;
-  double _scrollPosition;
-
-  _scrollListener() {
-    setState(() {
-      _scrollPosition = _scrollController.position.pixels;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController();
-    _scrollController.addListener(_scrollListener);
     Future.delayed(Duration.zero, () {
       setState(() {
         widthOfContainer = MediaQuery.of(context).size.width * 0.94;
@@ -69,10 +58,10 @@ class _HomeState extends State<Home> {
       irColor = Colors.purpleAccent;
     }
 
-    setState(() {
-      print("0000000000000000000000000000000000");
-      recentList[index].colorSet = true;
-    });
+    // setState(() {
+    //   print("0000000000000000000000000000000000");
+    //   recentList[index].colorSet = true;
+    // });
     // }
 
     return irColor;
@@ -81,18 +70,6 @@ class _HomeState extends State<Home> {
   void onTabItemTapped(int index) {
     setState(() {
       selectedIndex = index;
-    });
-  }
-
-  void setContainerBig() {
-    setState(() {
-      widthOfContainer = MediaQuery.of(context).size.width;
-    });
-  }
-
-  void setContainerSmall() {
-    setState(() {
-      widthOfContainer = MediaQuery.of(context).size.width * 0.92;
     });
   }
 
@@ -235,69 +212,55 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-            NotificationListener<ScrollUpdateNotification>(
-              onNotification: (notification) {
-                // if (_scrollPosition > 20 && _scrollPosition > 12) {
-                //   print(_scrollPosition);
-                //   print("111111111111111111111111");
-                //   setContainerBig();
-                // } else if (_scrollPosition < 20 && _scrollPosition < 25) {
-                //   print(_scrollPosition);
-                //   print("222222222222222222");
-                //   setContainerSmall();
-                // }
-              },
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.80,
-                    width: MediaQuery.of(context).size.width,
-                    // color: Colors.green,
-                    child: Column(
-                      children: <Widget>[
-                        AnimatedContainer(
-                          duration: Duration(milliseconds: 200),
-                          width: widthOfContainer,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              )),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                _getLableText("Airline"),
-                                _getGridCard(
-                                    "images/airElectricty/plane.png", false),
-                                _getLableText("Electricty"),
-                                _getGridCard(
-                                    "images/airElectricty/bulb.png", false),
-                                _getLableText("Airtime"),
-                                _getGridCard("image/plane.png", true),
-                              ],
-                            ),
+            SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50.0),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.80,
+                  width: MediaQuery.of(context).size.width,
+                  // color: Colors.green,
+                  child: Column(
+                    children: <Widget>[
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 200),
+                        width: widthOfContainer,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20),
+                            )),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              _getLableText("Airline"),
+                              _getGridCard(
+                                  "images/airElectricty/plane.png", false),
+                              _getLableText("Electricty"),
+                              _getGridCard(
+                                  "images/airElectricty/bulb.png", false),
+                              _getLableText("Airtime"),
+                              _getGridCard("image/plane.png", true),
+                            ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              top: 30,
-                              left: MediaQuery.of(context).size.width * 0.04),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text("Recent",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xff2b7787))),
-                          ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: 30,
+                            left: MediaQuery.of(context).size.width * 0.04),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Recent",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff2b7787))),
                         ),
-                        _getRecentGrid()
-                      ],
-                    ),
+                      ),
+                      _getRecentGrid()
+                    ],
                   ),
                 ),
               ),
